@@ -2,9 +2,11 @@ import { Module } from '@nestjs/common';
 // CORRIJA ESTA LINHA:
 import { AppController } from './controllers/app.controller'; // <-- Remova o '.spec' e ajuste o caminho
 import { UseCaseModule } from '../use-case/use-case.module';
+import { ClientsController } from './controllers/clients/clients.controller';
+import { AdmController } from './controllers/user_adm/adm.controller';
 
 @Module({
   imports: [UseCaseModule],
-  controllers: [AppController],
+  controllers: [AppController,ClientsController,AdmController],
 })
 export class InterfaceModule {}
