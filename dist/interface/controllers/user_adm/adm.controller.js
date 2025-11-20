@@ -15,40 +15,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdmController = void 0;
 const common_1 = require("@nestjs/common");
 const adm_dto_1 = require("../../dtos/adm.dto");
-let administradores = [];
+const adm_service_1 = require("../../../use-case/adm/adm.service");
 let AdmController = class AdmController {
+    service;
+    constructor(service) {
+        this.service = service;
+    }
     create(createAdmDto) {
-        const existente = administradores.find(x => x.email === createAdmDto.email);
-        if (existente) {
-            throw new common_1.BadRequestException("Adm já cadastrado com esse Email");
-        }
-        administradores.push(createAdmDto);
-        return createAdmDto;
+        return this.service.create(createAdmDto);
     }
     findAll() {
-        return administradores;
+        return this.service.findAll();
     }
     findOne(email) {
-        return administradores.find(x => x.email === email);
+        return this.service.findOne(email);
     }
     update(email, updateAdmDto) {
-        const index = administradores.findIndex(x => x.email === email);
-        console.log(index);
-        console.log(email);
-        console.log(updateAdmDto);
-        if (index === -1) {
-            throw new common_1.NotFoundException("Adm não encontrado");
-        }
-        administradores[index] = { ...administradores[index], ...updateAdmDto };
-        return administradores[index];
+        return this.service.update(email, updateAdmDto);
     }
     remove(email) {
-        const index = administradores.findIndex(x => x.email === email);
-        if (index === -1) {
-            throw new common_1.NotFoundException("Adm não encontrado");
-        }
-        const removido = administradores.splice(index, 1)[0];
-        return removido;
+        return this.service.remove(email);
     }
 };
 exports.AdmController = AdmController;
@@ -70,14 +56,14 @@ __decorate([
     __param(0, (0, common_1.Param)("email")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", void 0)
 ], AdmController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Put)(":email"),
     __param(0, (0, common_1.Param)("email")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, adm_dto_1.AdmDto]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], AdmController.prototype, "update", null);
 __decorate([
@@ -88,6 +74,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AdmController.prototype, "remove", null);
 exports.AdmController = AdmController = __decorate([
-    (0, common_1.Controller)("adm")
+    (0, common_1.Controller)("adm"),
+    __metadata("design:paramtypes", [adm_service_1.AdmService])
 ], AdmController);
 //# sourceMappingURL=adm.controller.js.map

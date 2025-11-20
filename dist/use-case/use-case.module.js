@@ -10,14 +10,24 @@ exports.UseCaseModule = void 0;
 const common_1 = require("@nestjs/common");
 const create_greeting_use_case_1 = require("./create-greeting.use-case");
 const infra_module_1 = require("../infra/infra.module");
+const clients_service_1 = require("./clients/clients.service");
+const adm_service_1 = require("./adm/adm.service");
 let UseCaseModule = class UseCaseModule {
 };
 exports.UseCaseModule = UseCaseModule;
 exports.UseCaseModule = UseCaseModule = __decorate([
     (0, common_1.Module)({
         imports: [infra_module_1.InfraModule],
-        providers: [create_greeting_use_case_1.CreateGreetingUseCase],
-        exports: [create_greeting_use_case_1.CreateGreetingUseCase],
+        providers: [
+            create_greeting_use_case_1.CreateGreetingUseCase,
+            clients_service_1.ClientsService,
+            adm_service_1.AdmService,
+        ],
+        exports: [
+            create_greeting_use_case_1.CreateGreetingUseCase,
+            clients_service_1.ClientsService,
+            adm_service_1.AdmService,
+        ],
     })
 ], UseCaseModule);
 //# sourceMappingURL=use-case.module.js.map

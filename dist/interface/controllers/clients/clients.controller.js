@@ -15,37 +15,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientsController = void 0;
 const common_1 = require("@nestjs/common");
 const client_dto_1 = require("../../dtos/client.dto");
-let clientes = [];
+const clients_service_1 = require("../../../use-case/clients/clients.service");
 let ClientsController = class ClientsController {
+    service;
+    constructor(service) {
+        this.service = service;
+    }
     create(createClientDto) {
-        const existente = clientes.find(x => x.email === createClientDto.email);
-        if (existente) {
-            throw new common_1.BadRequestException("Cliente já cadastrado com esse Email");
-        }
-        clientes.push(createClientDto);
-        return createClientDto;
+        return this.service.create(createClientDto);
     }
     findAll() {
-        return clientes;
+        return this.service.findAll();
     }
     findOne(email) {
-        return clientes.find(x => x.email === email);
+        return this.service.findOne(email);
     }
     update(email, updateClientDto) {
-        const index = clientes.findIndex(x => x.email === email);
-        if (index === -1) {
-            throw new common_1.NotFoundException("Cliente não encontrado");
-        }
-        clientes[index] = { ...clientes[index], ...updateClientDto };
-        return clientes[index];
+        return this.service.update(email, updateClientDto);
     }
     remove(email) {
-        const index = clientes.findIndex(x => x.email === email);
-        if (index === -1) {
-            throw new common_1.NotFoundException("Cliente não encontrado");
-        }
-        const removido = clientes.splice(index, 1)[0];
-        return removido;
+        return this.service.remove(email);
     }
 };
 exports.ClientsController = ClientsController;
@@ -67,7 +56,7 @@ __decorate([
     __param(0, (0, common_1.Param)("email")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", client_dto_1.ClientDto)
 ], ClientsController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Put)(":email"),
@@ -85,6 +74,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ClientsController.prototype, "remove", null);
 exports.ClientsController = ClientsController = __decorate([
-    (0, common_1.Controller)("clients")
+    (0, common_1.Controller)("clients"),
+    __metadata("design:paramtypes", [clients_service_1.ClientsService])
 ], ClientsController);
 //# sourceMappingURL=clients.controller.js.map

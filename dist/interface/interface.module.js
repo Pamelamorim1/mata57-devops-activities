@@ -18,7 +18,11 @@ exports.InterfaceModule = InterfaceModule;
 exports.InterfaceModule = InterfaceModule = __decorate([
     (0, common_1.Module)({
         imports: [use_case_module_1.UseCaseModule],
-        controllers: [app_controller_1.AppController, clients_controller_1.ClientsController, adm_controller_1.AdmController],
+        controllers: [
+            app_controller_1.AppController,
+            clients_controller_1.ClientsController,
+            adm_controller_1.AdmController,
+        ],
     })
 ], InterfaceModule);
 //# sourceMappingURL=interface.module.js.map
