@@ -10,13 +10,19 @@ exports.InterfaceModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./controllers/app.controller");
 const use_case_module_1 = require("../use-case/use-case.module");
+const clients_controller_1 = require("./controllers/clients/clients.controller");
+const adm_controller_1 = require("./controllers/user_adm/adm.controller");
 let InterfaceModule = class InterfaceModule {
 };
 exports.InterfaceModule = InterfaceModule;
 exports.InterfaceModule = InterfaceModule = __decorate([
     (0, common_1.Module)({
         imports: [use_case_module_1.UseCaseModule],
-        controllers: [app_controller_1.AppController],
+        controllers: [
+            app_controller_1.AppController,
+            clients_controller_1.ClientsController,
+            adm_controller_1.AdmController,
+        ],
     })
 ], InterfaceModule);
 //# sourceMappingURL=interface.module.js.map
