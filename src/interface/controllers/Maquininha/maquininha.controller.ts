@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, Param, Put, Delete } from '@nestjs/common'; // <--- Adicione Delete e Put
-import { MaquininhaService } from '../../../use-case/maquininha.service'; // Ajuste o caminho se precisar
+import { MaquininhaService } from '../../../use-case/maquininha/maquininha.service'; // Ajuste o caminho se precisar
 import { MaquininhaDto } from '../../dtos/maquininha.dto'; // Ajuste o caminho se precisar
 
 @Controller('maquininhas') 

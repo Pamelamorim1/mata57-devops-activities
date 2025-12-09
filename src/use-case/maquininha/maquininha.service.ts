@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
-import { MaquininhaDto } from '../interface/dtos/maquininha.dto';
+import { MaquininhaDto } from '../../interface/dtos/maquininha.dto';
 
 @Injectable()
 export class MaquininhaService {
